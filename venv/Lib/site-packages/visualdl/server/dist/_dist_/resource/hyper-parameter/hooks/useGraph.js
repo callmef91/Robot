@@ -1,0 +1,1 @@
+import{useCallback as n,useMemo as p,useState as u}from"../../../../web_modules/react.js";export default function m(l,s){const a=p(()=>l.filter(e=>e.selected),[l]),[c,o]=u(null),[t,r]=u(!1),f=n(e=>{t||o(e==null?null:s[e])},[s,t]),h=n(e=>{o(e==null?null:s[e]),r(e!=null)},[s]);return{selectedIndicators:a,sessionData:c,onHover:f,onSelect:h,showMetricsGraph:t}}

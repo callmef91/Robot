@@ -1,0 +1,1 @@
+import t from"../../../../web_modules/react.js";import{ellipsis as l}from"../../../utils/style.js";import s from"../../../../web_modules/styled-components.js";const o=s.span.withConfig({displayName:"Cell__Span",componentId:"sc-14gjvcl-0"})(["",""],l()),m=({cell:e})=>t.createElement(o,{title:e.value},e.value);export default m;

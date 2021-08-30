@@ -1,0 +1,1 @@
+import{a as o}from"../common/_baseGetTag-1f55c4d7.js";import{i}from"../common/isArray-e5625ed5.js";import{i as s}from"../common/isObjectLike-fd2938b0.js";import"../common/_commonjsHelpers-4f955397.js";var t="[object String]";function m(r){return typeof r=="string"||!i(r)&&s(r)&&o(r)==t}var e=m;export default e;

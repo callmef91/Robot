@@ -1,0 +1,1 @@
+export let OrderDirection;(function(t){t.ASCENDING="asc",t.DESCENDING="desc"})(OrderDirection||(OrderDirection={}));export let ScaleMethod;(function(t){t.LINEAR="linear",t.LOGARITHMIC="logarithmic",t.QUANTILE="quantile"})(ScaleMethod||(ScaleMethod={}));

@@ -1,0 +1,1 @@
+import e from"../Select.js";import{borderRadius as t}from"../../utils/style.js";import o from"../../../web_modules/styled-components.js";const r=o(e).withConfig({displayName:"BorderLessSelect",componentId:"sc-1e2cgzr-0"})(["border:none;line-height:1.1;min-width:4em;--height:1em;--padding:0;.list{border-radius:",";}"],t);export default r;

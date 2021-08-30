@@ -1,0 +1,1 @@
+import t from"../../../../web_modules/react.js";import o from"./Header.js";import r from"../../../../web_modules/styled-components.js";const d=r(o).withConfig({displayName:"MetricsHeader__BoldHeader",componentId:"sc-1unln6t-0"})(["font-weight:700;"]),s=e=>t.createElement(d,e);export default s;

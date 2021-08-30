@@ -1,0 +1,1 @@
+export let TimeMode;(function(t){t.Step="step",t.Relative="relative",t.WallTime="wall"})(TimeMode||(TimeMode={}));export let HighDimensionalColorType;(function(t){t[t.Null=0]="Null",t[t.Value=1]="Value",t[t.Category=2]="Category"})(HighDimensionalColorType||(HighDimensionalColorType={}));

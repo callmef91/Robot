@@ -1,0 +1,1 @@
+import{borderRadius as o,rem as r}from"../../utils/style.js";import d from"../../../web_modules/styled-components.js";const e=d.div.withConfig({displayName:"View",componentId:"sc-1ip7jnw-0"})(["width:100%;background-color:var(--background-color);border-radius:",";border-top-left-radius:0;padding:",";"],o,r(20));export default e;
