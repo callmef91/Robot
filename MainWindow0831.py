@@ -2,12 +2,14 @@
 引用区:应该尽量减少对整个包的引用，以缩小文件的大小
 
 '''
+import time
 from tkinter import Frame, Tk, StringVar, Label, Entry, Button
 from time import sleep
 # import requests
 # import base64
 import pyautogui
 print(pyautogui.position())
+
 from os import environ
 from paddleocr import PaddleOCR, draw_ocr
 
@@ -24,9 +26,14 @@ from paddleocr import PaddleOCR, draw_ocr
 给类提供一个进行文字比对的函数textCompare()
 传入两个str,第一个为输入,第二个为被比对
 '''
+global orgList
+orgList = ['ORG','90000.100000','90000.28000','90000.10000','90000.A2100','11000','23000']
+
 def textCompare(inputString, textString):
     if inputString==textString:
         return True
+    if len(textString)-len(inputString)>3:
+        return False
     for i in range(len(textString)-len(inputString)+1):
         while((textString[i] ==inputString[0])&(len(textString[i:])==len(inputString))):
             if textString[i:]==inputString:
@@ -95,8 +102,10 @@ class RobotWindow(Frame):
 
         messageLabel = Label(root, textvariable=self.mess).place(x=10, y=180)
 
-
     def cook(self):
+        self.subCook(orgList[int(self.organ.get())])
+
+    def subCook(self,mark):
         '''
         第一步：去读取输入的内容，并且启动脚本的程序
         '''
@@ -106,7 +115,9 @@ class RobotWindow(Frame):
             self.mess.set('请在Excel上操作')
             return  # 在此就结束函数了
         else:
+
             pyautogui.click(x=point[0], y=point[1] + 10, clicks=2)
+
             pyautogui.moveRel(0, 55, 0.7)
             pyautogui.click()
 
@@ -144,7 +155,7 @@ class RobotWindow(Frame):
 
 
         # 已经全部点开了
-        for i in [self.year.get(), monthTrans(self.month.get()), self.organ.get()]:
+        for i in [self.year.get(), monthTrans(self.month.get()), mark]:
             print(i)
             tt = True  # 设计个标记
             while (tt):  # 使用一个循环一直向下找
@@ -157,22 +168,36 @@ class RobotWindow(Frame):
                     print(text[1][0])
                     if textCompare(i, text[1][0]) !=False:
                         tt = False
-                        pyautogui.click(1007,(text[0][0][1] + text[0][3][1]) / 2 + frame[1])
+                        if str(i) ==mark:
+                            pyautogui.moveTo(1007,(text[0][0][1] + text[0][3][1]) / 2 + frame[1])
+                        else:
+                            pyautogui.click(1007,(text[0][0][1] + text[0][3][1]) / 2 + frame[1])
                         break
                 if tt == True:
                     rollNum(7)
 
-        return
+        x,y = pyautogui.position()
+        x = 1004
+        for i in range(6):
+            pyautogui.click(x,y)
+            pyautogui.click(x,y+35)
+            rollNum(1)
+
+
+
         pyautogui.click(1483, 801)
 
         # part.3
-        pyautogui.click(386,278,1)
-        pyautogui.click(420, 311, 1)
-        pyautogui.click(447, 377, 1)
-        pyautogui.click(500, 411, 1)
-        pyautogui.click(500, 447, 1)
+        pyautogui.click(387,275,1)
+        pyautogui.click(416, 312, 1)
+        pyautogui.click(447, 493, 1)
+        pyautogui.click(500, 628, 1)
+        pyautogui.click(1409, 803, 1)
         pyautogui.click(1447, 799, 1)
-        pyautogui.click(1009, 770, 1)
+
+        print(time.asctime( time.localtime(time.time()) ))
+
+
 
 
 '''
