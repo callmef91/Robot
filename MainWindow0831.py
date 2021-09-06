@@ -2,7 +2,9 @@
 引用区:应该尽量减少对整个包的引用，以缩小文件的大小
 
 '''
+import sys
 import time
+from threading import Thread
 from tkinter import Frame, Tk, StringVar, Label, Entry, Button
 from time import sleep
 # import requests
@@ -34,13 +36,15 @@ class RobotWindow(Frame):
         global root
         root = Tk()
         root.title('C1插件下载机器人')
-        root.geometry('200x300+1000+420')
+        root.geometry('220x300+1000+420')
+
         # 定义几个变量来接收
         self.year = StringVar()
         self.month = StringVar()
         self.organ = StringVar()
         self.num = StringVar()
         self.mess = StringVar()
+        self.mark = True
 
         # 加载的函数
         self.startWindow()
@@ -63,13 +67,34 @@ class RobotWindow(Frame):
         numLabel = Label(root,text="数量:").place(x=10,y=115)
         numEntry = Entry(root,textvariable=self.num).place(x=60,y=115)
 
-        cookButton = Button(root, text='Cook!', command=self.cook).place(x=10, y=150)
-        quitButton = Button(root, text='古德拜', command=root.quit).place(x=80, y=150)
-
+        # cookButton = Button(root, text='Cook!', command=self.cook).place(x=10, y=150)
+        cookButton = Button(root, text='Cook!', command=self._cook).place(x=10, y=150)
+        breakButton = Button(root, text='中断', command=self.cookBreak).place(x=80, y=150)
+        quitButton = Button(root, text='古德拜', command=root.quit).place(x=140, y=150)
+        # root.bind("<Shift_L>", self.test2)
 
         messageLabel = Label(root, textvariable=self.mess).place(x=10, y=200)
 
 
+    def test(self):
+
+        while(self.mark):
+            sleep(1)
+            if self.mark==True:
+                print(1)
+        print('end')
+
+    def test2(self,args):
+        self.mark=False
+        print(self.mark)
+
+    def cookBreak(self):
+        self.mark=False
+
+    def _cook(self):
+        self.mark = True
+        cookThread = Thread(target=self.cook)
+        cookThread.start()
 
     def cook(self):
         if self.year.get() =='':
@@ -84,7 +109,11 @@ class RobotWindow(Frame):
 
         self.step1()
         self.step2()
+        if not self.mark:
+            return
         self.step3(self.organ.get()) #组织的选择上继续扩展
+        if not self.mark:
+            return
         self.step4()
         #self.subCook(orgList[int(self.organ.get())])
 
@@ -124,6 +153,8 @@ class RobotWindow(Frame):
                     else:
                         pass
             ffr.rollNum(4)
+            if not self.mark:
+                return
 
         #part.2
         frameRight = (950, 180, 580, 600)
