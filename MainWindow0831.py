@@ -76,18 +76,6 @@ class RobotWindow(Frame):
         messageLabel = Label(root, textvariable=self.mess).place(x=10, y=200)
 
 
-    def test(self):
-
-        while(self.mark):
-            sleep(1)
-            if self.mark==True:
-                print(1)
-        print('end')
-
-    def test2(self,args):
-        self.mark=False
-        print(self.mark)
-
     def cookBreak(self):
         self.mark=False
 
